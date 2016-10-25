@@ -4,17 +4,13 @@
     android:layout_height="match_parent"
     tools:context="com.cicnp.rgtech.cicnpv02.WelcomeScreen.Welcome1Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center" />
+        android:text="WELCOME ONE"
+        android:layout_gravity="center"
+        android:textSize="40sp"
+        android:textColor="@color/white"/>
 
 </FrameLayout>

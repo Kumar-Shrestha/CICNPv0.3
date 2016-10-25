@@ -62,6 +62,7 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPagerAdapter.addFragment(new Welcome1Fragment());
         mViewPagerAdapter.addFragment(new Welcome2Fragment());
+        mViewPagerAdapter.addFragment(new WelcomeLoginFragment());
 
 
         dotImageArray = new ArrayList<>();
