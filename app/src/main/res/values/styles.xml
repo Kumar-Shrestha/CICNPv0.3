@@ -17,7 +17,4 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="Widget.AppCompat.EditText" parent="android:Widget">
-        <item name="android:background">@drawable/login_button</item>
-    </style>
 </resources>
