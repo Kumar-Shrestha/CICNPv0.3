@@ -55,6 +55,8 @@ public class WelcomeActivity extends AppCompatActivity implements ViewPager.OnPa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        getSupportActionBar().hide();
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
