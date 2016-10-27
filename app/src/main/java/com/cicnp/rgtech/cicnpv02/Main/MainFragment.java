@@ -1,8 +1,11 @@
 package com.cicnp.rgtech.cicnpv02.Main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,6 +95,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         {
             case R.drawable.watch:
                 Toast.makeText(getContext(),"One", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent("WatchActivity"));
                 break;
 
             case R.drawable.add:
