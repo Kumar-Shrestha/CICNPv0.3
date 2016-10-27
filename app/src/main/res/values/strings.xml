@@ -4,6 +4,19 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
+    <!-- TOD): Chaiyeko jati yeha update garne nav ma aafai huncha-->
+    <array name="nav_recyclerView_title">
+        <item>Conference</item>
+        <item>Presentation</item>
+        <item>Donation</item>
+    </array>
+
+    <array name="nav_recyclerView_images">
+        <item>dot</item>
+        <item>dot</item>
+        <item>dot</item>
+    </array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
