@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cicnp.rgtech.cicnpv02.R;
+import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationFragment extends Fragment {
+public class NavigationFragment extends Fragment implements RecyclerItemClickListener.OnItemClickListener {
 
     //Main View
     View view;
@@ -70,7 +72,17 @@ public class NavigationFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, this));
+
         return view;
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+    }
+
+    @Override
+    public void onLongItemClick(View view, int position) {
+
+    }
 }
