@@ -17,7 +17,7 @@ public class WatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch);
 
-        WatchListFragment watchListFragment = new WatchListFragment();
+        WatchDetailsFragment watchListFragment = new WatchDetailsFragment();
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.watch_container, watchListFragment);
         ft.commit();
