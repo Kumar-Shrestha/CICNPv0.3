@@ -71,6 +71,7 @@ public class WatchDetailsFragment extends Fragment {
 
                     }
                 });
+                getDataFromNetwork.getData();
 
             }
         });

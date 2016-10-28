@@ -79,9 +79,9 @@ public class WatchListFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         });
+        getDataFromNetwork.getData();
 
         return view;
     }

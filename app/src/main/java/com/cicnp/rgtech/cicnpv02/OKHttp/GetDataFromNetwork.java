@@ -30,7 +30,6 @@ public class GetDataFromNetwork{
         this.url =url;
         this.body = body;
         this.activity = activity;
-        getData();
     }
 
     public void getData()
