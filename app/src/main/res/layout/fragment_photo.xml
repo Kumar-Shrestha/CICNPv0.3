@@ -18,6 +18,7 @@
                 android:layout_height="150dp"
                 android:src="@color/colorAccent"
                 android:layout_centerInParent="true"
+                android:id="@+id/addBlacklist_imageView_photo"
                 />
 
             <Button

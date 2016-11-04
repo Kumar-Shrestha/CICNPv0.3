@@ -27,6 +27,6 @@
     <!--URL's-->
     <string name="url_userDetail">http://192.168.10.76:8080/CICNP/v1/getUserDetail</string>
     <string name="url_photo">http://192.168.10.76:8080/CICNP/v1/photoUpload</string>
-    <string name="url_testImageUrl">"http://www.nelta.org.np/NELTA_app/v1/uploads/kmr_profilepic.jpeg"</string>
+    <string name="url_testImageUrl">"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"</string>
 
 </resources>
