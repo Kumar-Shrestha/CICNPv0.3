@@ -13,4 +13,6 @@
     <dimen name="main_inner_icon_size">100dp</dimen>
     <dimen name="main_icon_margin">0dp</dimen>
     <dimen name="main_icon_text_margin">-15dp</dimen>
+
+    <dimen name="watchdetails_colWidth">170dp</dimen>
 </resources>

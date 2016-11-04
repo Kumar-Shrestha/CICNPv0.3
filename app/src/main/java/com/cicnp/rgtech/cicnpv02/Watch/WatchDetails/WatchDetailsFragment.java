@@ -3,34 +3,46 @@ package com.cicnp.rgtech.cicnpv02.Watch.WatchDetails;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
-import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTask;
 import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
-import com.cicnp.rgtech.cicnpv02.OKHttp.SucessOrFail;
 import com.cicnp.rgtech.cicnpv02.R;
-import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import okhttp3.Call;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class WatchDetailsFragment extends Fragment {
+
+    String uniqueVariable;
+
+    ImageView imageView_photo;
+
+    //TextViews
+    TextView textView_name;
+    TextView textView_fathersName;
+    TextView textView_grandFathersName;
+    TextView textView_permanentAddress;
+    TextView textView_dateOfBirth;
+    TextView textView_contactNo;
+    TextView textView_citizenshipNo;
+    TextView textView_citizenshipIssuedPlace;
+    TextView textView_createdOn;
+    TextView textView_uploadedBy;
 
     Button button;
 
@@ -48,33 +60,65 @@ public class WatchDetailsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_watch_details, container, false);
 
-        button = (Button) view.findViewById(R.id.watchdetials_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        getActivity().setTitle("Watch Details");
+
+
+        uniqueVariable = getArguments().getString("UniqueVariable");
+
+
+
+        textView_name = (TextView) view.findViewById(R.id.watchDetails_textView_name);
+        textView_fathersName = (TextView) view.findViewById(R.id.watchDetails_textView_fathersName);
+        textView_grandFathersName = (TextView) view.findViewById(R.id.watchDetails_textView_grandFathersName);
+        textView_permanentAddress = (TextView) view.findViewById(R.id.watchDetails_textView_permanentAddress);
+        textView_dateOfBirth = (TextView) view.findViewById(R.id.watchDetails_textView_dateOfBirth);
+        textView_contactNo = (TextView) view.findViewById(R.id.watchDetails_textView_contactNo);
+        textView_citizenshipNo = (TextView) view.findViewById(R.id.watchDetails_textView_citizenshipNo);
+        textView_citizenshipIssuedPlace = (TextView) view.findViewById(R.id.watchDetails_textView_citizenshipIssuedPlace);
+        textView_createdOn = (TextView) view.findViewById(R.id.watchDetails_textView_createdOn);
+        textView_uploadedBy = (TextView) view.findViewById(R.id.watchDetails_textView_uploadedBy);
+
+
+
+
+        String reg_url = getString(R.string.url_userDetail);
+        RequestBody registerFormBody = new FormBody.Builder()
+                .add("name", uniqueVariable)
+                .build();
+
+        GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
+        getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
             @Override
-            public void onClick(View v) {
+            public void CallbackMethodForNetworkTask(final JSONObject message) {
 
-                String reg_url = "http://192.168.10.76:8080/CICNP/v1/getUserDetail";
-                RequestBody registerFormBody = new FormBody.Builder()
-                        .add("name", "abc")
-                        .build();
-
-                GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
-                getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
-                    public void CallbackMethodForNetworkTask(final JSONObject message) {
-
+                    public void run() {
                         try {
-                            Toast.makeText(getActivity(), message.getString("father_name"), Toast.LENGTH_SHORT).show();
+                            textView_name.setText(message.getString("black_id"));
+                            textView_fathersName.setText(message.getString("father_name"));
+                            textView_grandFathersName.setText(message.getString("grandfather_name"));
+                            textView_permanentAddress.setText(message.getString("permanent_address"));
+                            textView_dateOfBirth.setText(message.getString("bod"));
+                            textView_contactNo.setText(message.getString("contact_no"));
+                            textView_uploadedBy.setText(message.getString("upload_by"));
+                            textView_citizenshipNo.setText(message.getString("citizen_number"));
+                            textView_citizenshipIssuedPlace.setText(message.getString("citizen_issued_place"));
+                            textView_createdOn.setText(message.getString("created_on"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 });
-                getDataFromNetwork.getData();
-
             }
         });
+        getDataFromNetwork.getData();
+
+        imageView_photo = (ImageView) view.findViewById(R.id.watchDetails_imageView_photo);
+
+        Picasso.with(getContext()).load(getString(R.string.url_testImageUrl))
+                .into(imageView_photo);
+
         return view;
     }
 

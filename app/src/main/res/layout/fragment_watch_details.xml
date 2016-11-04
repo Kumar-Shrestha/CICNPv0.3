@@ -14,6 +14,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:src="@drawable/dot"
+            android:id="@+id/watchDetails_imageView_photo"
             />
 
         <TextView
@@ -22,6 +23,7 @@
             android:text="Name"
             android:textSize="20sp"
             android:layout_margin="10dp"
+            android:id="@+id/watchDetails_textView_name"
             />
 
         <LinearLayout
@@ -35,20 +37,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:orientation="horizontal">
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Father's name"
                     android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Father's name"
-                    android:layout_gravity="center"/>
+                    android:id="@+id/watchDetails_textView_fathersName"
+                    />
 
             </GridLayout>
 
@@ -56,31 +59,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnCount="2"
-                android:orientation="horizontal">
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="GrandFather's name"
                     android:textStyle="bold"
-                    android:layout_gravity="center"/>
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GrandFather's name"
-                    android:layout_gravity="center"/>
+                    android:id="@+id/watchDetails_textView_grandFathersName"/>
+
 
             </GridLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Permanent Address"
                     android:textStyle="bold"
@@ -90,18 +94,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Permanent Address"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_permanentAddress"/>
 
-            </GridLayout>
+            </LinearLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Date of Birth"
                     android:textStyle="bold"
@@ -111,18 +116,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date of Birth"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_dateOfBirth"/>
 
-            </GridLayout>
+            </LinearLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Contact No."
                     android:textStyle="bold"
@@ -132,18 +138,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Contact No."
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_contactNo"/>
 
-            </GridLayout>
+            </LinearLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Citizenship No."
                     android:textStyle="bold"
@@ -153,18 +160,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Citizenship No."
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_citizenshipNo"/>
 
-            </GridLayout>
+            </LinearLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Citizenship Issued Place"
                     android:textStyle="bold"
@@ -174,18 +182,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Citizenship Issued Place"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_citizenshipIssuedPlace"/>
 
-            </GridLayout>
+            </LinearLayout>
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Created On"
                     android:textStyle="bold"
@@ -195,18 +204,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Created On"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_createdOn"/>
 
-            </GridLayout>
+            </LinearLayout>
 
-            <GridLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/watchdetails_colWidth"
                     android:layout_height="wrap_content"
                     android:text="Uploaded By"
                     android:textStyle="bold"
@@ -216,9 +226,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Uploaded By"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/watchDetails_textView_uploadedBy"/>
 
-            </GridLayout>
+            </LinearLayout>
 
         </LinearLayout>
 

@@ -11,5 +11,10 @@ public class AddBlacklistActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_blacklist);
+
+        AddressDOB blackListName = new AddressDOB();
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.addBlackList_container, blackListName);
+        ft.commit();
     }
 }

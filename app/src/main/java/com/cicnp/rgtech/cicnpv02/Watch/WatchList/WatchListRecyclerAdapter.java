@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cicnp.rgtech.cicnpv02.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -49,8 +50,12 @@ public class WatchListRecyclerAdapter extends RecyclerView.Adapter<WatchListRecy
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.name.setText(recyclerDataList.get(position).name.toString());
-        holder.priority.setText(recyclerDataList.get(position).priority.toString());
-        holder.image.setImageResource(recyclerDataList.get(position).imageID);
+        holder.priority.setText(recyclerDataList.get(position).secondaryInfo.toString());
+
+        Picasso.with(context).load(context.getString(R.string.url_testImageUrl))
+                .into(holder.image);
+
+        //holder.image.setImageResource(recyclerDataList.get(position).imageID);
     }
 
     @Override

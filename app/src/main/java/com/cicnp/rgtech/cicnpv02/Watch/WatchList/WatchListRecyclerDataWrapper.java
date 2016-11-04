@@ -5,14 +5,16 @@ package com.cicnp.rgtech.cicnpv02.Watch.WatchList;
  */
 public class WatchListRecyclerDataWrapper
 {
+    public String uniqueVariable;
     public String name;
     public int imageID;
-    public String priority;
+    public String secondaryInfo;
 
-    public WatchListRecyclerDataWrapper(String name, int imageID, String priority)
+    public WatchListRecyclerDataWrapper(String name, int imageID, String secondaryInfo, String uniqueVariable)
     {
         this.name = name;
         this.imageID = imageID;
-        this.priority = priority;
+        this.secondaryInfo = secondaryInfo;
+        this.uniqueVariable = uniqueVariable;
     }
 }

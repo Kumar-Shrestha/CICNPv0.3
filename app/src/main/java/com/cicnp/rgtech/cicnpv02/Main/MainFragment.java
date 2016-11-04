@@ -100,6 +100,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
             case R.drawable.add:
                 Toast.makeText(getContext(),"Two", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent("AddBlackListActivity"));
                 break;
 
             case R.drawable.search:

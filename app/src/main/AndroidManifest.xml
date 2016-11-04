@@ -37,7 +37,13 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddBlacklist.AddBlacklistActivity"></activity>
+        <activity android:name=".AddBlacklist.AddBlacklistActivity">
+            <intent-filter>
+                <action android:name="AddBlackListActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
