@@ -19,7 +19,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.cicnp.rgtech.cicnpv02.OKHttp.SucessOrFail;
 import com.cicnp.rgtech.cicnpv02.Photo.PhotoUpload;
@@ -40,7 +42,7 @@ import okhttp3.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Photo extends Fragment {
+public class Photo extends Fragment implements View.OnClickListener {
 
     View view;
 
@@ -48,6 +50,8 @@ public class Photo extends Fragment {
     Bitmap selectedImage = null;
     public static String imagePath;
     ImageView photo;
+
+    Button submit;
 
     public Photo() {
         // Required empty public constructor
@@ -60,6 +64,27 @@ public class Photo extends Fragment {
         view = inflater.inflate(R.layout.fragment_photo, container, false);
 
         photo = (ImageView) view.findViewById(R.id.addBlacklist_imageView_photo);
+
+        submit = (Button) view.findViewById(R.id.addBlacklist_button_submit);
+        submit.setOnClickListener(this);
+
+        photoUpload = new PhotoUpload(getActivity());
+        photoUpload.setSucessOrFailListener(new SucessOrFail() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException, JSONException {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), "AyoA Ayo", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onFail(Call call, IOException e) {
+
+            }
+        });
 
         int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
@@ -205,4 +230,13 @@ public class Photo extends Fragment {
         mImageView.setImageBitmap(photoReducedSize);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId())
+        {
+            case R.id.addBlacklist_button_submit:
+                photoUpload.uploadImage(imagePath, "PhotoName");
+                break;
+        }
+    }
 }
