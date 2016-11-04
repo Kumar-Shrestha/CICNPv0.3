@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "906704493244",
+    "firebase_url": "https://cicnp-1fff1.firebaseio.com",
+    "project_id": "cicnp-1fff1",
+    "storage_bucket": "cicnp-1fff1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906704493244:android:bf3e02db6a201e5f",
+        "android_client_info": {
+          "package_name": "com.cicnp.rgtech.cicnpv02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906704493244-5kast7c6vh8ikqfje7cmumfg64qra8mn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD81WbHIr9C7fWpaRPo0FQSrOAfL1RBWzk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
