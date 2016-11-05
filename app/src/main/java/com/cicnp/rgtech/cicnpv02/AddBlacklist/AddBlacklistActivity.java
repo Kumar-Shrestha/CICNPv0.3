@@ -12,7 +12,7 @@ public class AddBlacklistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_blacklist);
 
-        Photo blackListName = new Photo();
+        BlackListName blackListName = new BlackListName();
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.addBlackList_container, blackListName);
         ft.commit();
