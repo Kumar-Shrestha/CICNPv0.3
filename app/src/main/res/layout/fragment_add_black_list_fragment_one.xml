@@ -1,9 +1,10 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.BlackListName"
-    android:background="@color/colorPrimaryLight">
+    android:background="@drawable/add_blacklist_background"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,12 +27,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="BlackList's Name"
-                android:layout_margin="5dp"/>
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorPrimary"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:textColorHint="@color/colorPrimaryLight"
                 >
 
                 <EditText
@@ -38,7 +44,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="First Name"
-                    android:singleLine="true"/>
+                    android:textColor="@color/white"
+                    android:singleLine="true"
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -46,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:textColorHint="@color/colorPrimaryLight"
                 >
 
                 <EditText
@@ -53,6 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Middle Name"
+                    android:textColor="@color/white"
                     android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -61,6 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:textColorHint="@color/colorPrimaryLight"
                 >
 
                 <EditText
@@ -68,6 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Last Name"
+                    android:textColor="@color/white"
                     android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
@@ -79,10 +91,13 @@
             android:layout_height="wrap_content"
             android:text="Next"
             android:id="@+id/addBlacklist_button_next"
+            android:background="@drawable/add_blacklist_button"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
             />
 
     </LinearLayout>
 
     </ScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

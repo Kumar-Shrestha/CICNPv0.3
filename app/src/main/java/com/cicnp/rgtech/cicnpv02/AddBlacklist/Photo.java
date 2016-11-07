@@ -64,6 +64,7 @@ public class Photo extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.fragment_photo, container, false);
 
         photo = (ImageView) view.findViewById(R.id.addBlacklist_imageView_photo);
+        photo.setOnClickListener(this);
 
         submit = (Button) view.findViewById(R.id.addBlacklist_button_submit);
         submit.setOnClickListener(this);
@@ -82,7 +83,12 @@ public class Photo extends Fragment implements View.OnClickListener {
 
             @Override
             public void onFail(Call call, IOException e) {
-
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), "Problem While uploading", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
@@ -112,16 +118,6 @@ public class Photo extends Fragment implements View.OnClickListener {
 
 
         }
-
-
-        //Open Gallery
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            // Bring up gallery to select a photo
-            startActivityForResult(intent, 1010);
-        }
-
 
         return view;
     }
@@ -236,6 +232,18 @@ public class Photo extends Fragment implements View.OnClickListener {
         {
             case R.id.addBlacklist_button_submit:
                 photoUpload.uploadImage(imagePath, "PhotoName");
+                break;
+
+            case R.id.addBlacklist_imageView_photo:
+
+                //Open Gallery
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+                if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    // Bring up gallery to select a photo
+                    startActivityForResult(intent, 1010);
+                }
+
                 break;
         }
     }

@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.FathersName">
+    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.FathersName"
+    android:background="@drawable/add_blacklist_background">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -10,7 +12,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -22,12 +26,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Father's Name"
-                    android:layout_margin="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/colorPrimary"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:textColorHint="@color/colorPrimaryLight"
                     >
 
                     <EditText
@@ -35,14 +43,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Father's First Name"
+                        android:textColor="@color/white"
                         android:singleLine="true"/>
 
                 </android.support.design.widget.TextInputLayout>
+
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:textColorHint="@color/colorPrimaryLight"
                     >
 
                     <EditText
@@ -50,6 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Father's Middle Name"
+                        android:textColor="@color/white"
                         android:singleLine="true"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -58,6 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:textColorHint="@color/colorPrimaryLight"
                     >
 
                     <EditText
@@ -65,6 +78,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Father's Last Name"
+                        android:textColor="@color/white"
                         android:singleLine="true"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -75,6 +89,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"
+                android:background="@drawable/add_blacklist_button"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
                 android:id="@+id/addBlacklist_button_next"
                 />
 

@@ -1,8 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.AddressDOB">
+    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.AddressDOB"
+    android:background="@drawable/add_blacklist_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,12 +12,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Information"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorPrimary"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:textColorHint="@color/colorPrimaryLight"
                 >
 
                 <EditText
@@ -24,27 +36,48 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Permanent Address"
+                    android:textColor="@color/white"
                     android:singleLine="true"/>
 
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date Of Birth"/>
-
-            <DatePicker
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/datePicker"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false" />
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/addBlacklist_dateContainer">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Date of Birth"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <DatePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/addBlackList_datePicker_dateOfBirth"
+                    android:datePickerMode="spinner"
+                    android:calendarViewShown="false"
+                    android:calendarTextColor="@color/colorAccent"
+                    android:background="#66FFFFFF"
+                    />
+
+            </LinearLayout>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/addBlacklist_button_next"
+                android:background="@drawable/add_blacklist_button"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
                 />
 
         </LinearLayout>
@@ -53,4 +86,4 @@
 
 
 
-</FrameLayout>
+</RelativeLayout>

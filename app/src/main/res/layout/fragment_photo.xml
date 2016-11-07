@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.Photo">
+    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.Photo"
+    android:background="@drawable/add_blacklist_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,21 +12,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="50dp">
 
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@color/colorAccent"
+                android:src="@drawable/add"
                 android:layout_centerInParent="true"
                 android:id="@+id/addBlacklist_imageView_photo"
+                android:layout_margin="20dp"
                 />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Submit"
-                android:id="@+id/addBlacklist_button_submit"/>
+                android:id="@+id/addBlacklist_button_submit"
+                android:background="@drawable/add_blacklist_button"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                />
 
         </LinearLayout>
     </ScrollView>

@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.DetailsInfo">
+    tools:context="com.cicnp.rgtech.cicnpv02.AddBlacklist.DetailsInfo"
+    android:background="@drawable/add_blacklist_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -11,58 +12,86 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                >
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                android:padding="10dp">
 
-                <EditText
-                    android:id="@+id/addBlackList_editText_contactNumber"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Detail Information"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/colorPrimary"/>
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Contact Number"
-                    android:singleLine="true"/>
+                    android:layout_gravity="center_horizontal"
+                    android:textColorHint="@color/colorPrimaryLight"
+                    >
 
-            </android.support.design.widget.TextInputLayout>
+                    <EditText
+                        android:id="@+id/addBlackList_editText_contactNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Contact Number"
+                        android:textColor="@color/white"
+                        android:singleLine="true"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                >
+                </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/addBlackList_editText_citizenshipNumber"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Citizenship Number"
-                    android:singleLine="true"/>
+                    android:layout_gravity="center_horizontal"
+                    android:textColorHint="@color/colorPrimaryLight"
+                    >
 
-            </android.support.design.widget.TextInputLayout>
+                    <EditText
+                        android:id="@+id/addBlackList_editText_citizenshipNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Citizenship Number"
+                        android:textColor="@color/white"
+                        android:singleLine="true"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                >
+                </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/addBlackList_editText_citizenshipIssuedPlace"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Citizenship Issued Place"
-                    android:singleLine="true"/>
+                    android:layout_gravity="center_horizontal"
+                    android:textColorHint="@color/colorPrimaryLight"
+                    >
 
-            </android.support.design.widget.TextInputLayout>
+                    <EditText
+                        android:id="@+id/addBlackList_editText_citizenshipIssuedPlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Citizenship Issued Place"
+                        android:textColor="@color/white"
+                        android:singleLine="true"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"
                 android:id="@+id/addBlacklist_button_next"
+                android:background="@drawable/add_blacklist_button"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
                 />
 
 

@@ -57,9 +57,10 @@ public class BlackListName extends Fragment implements View.OnClickListener {
                 BlackListDetails.lastName = textView_blackListLastName.getText().toString();
 
 
-                FathersName fatherName = new FathersName();
+                AddressDOB addressDOB = new AddressDOB();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.addBlackList_container, fatherName);
+                ft.replace(R.id.addBlackList_container, addressDOB);
+                ft.addToBackStack(null);
                 ft.commit();
 
                 break;
