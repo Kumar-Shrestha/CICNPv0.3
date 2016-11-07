@@ -44,6 +44,7 @@
                         android:layout_height="wrap_content"
                         android:hint="Contact Number"
                         android:textColor="@color/white"
+                        android:inputType="number"
                         android:singleLine="true"/>
 
                 </android.support.design.widget.TextInputLayout>

@@ -16,6 +16,15 @@
             android:gravity="center"
             android:layout_marginTop="50dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Photo of Blacklist"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/colorPrimary"/>
+
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
