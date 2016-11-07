@@ -54,7 +54,6 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
 
 
 
-
         //Define recyclerview
         recyclerView = (RecyclerView) view.findViewById(R.id.watchlist_recyclerView);
 

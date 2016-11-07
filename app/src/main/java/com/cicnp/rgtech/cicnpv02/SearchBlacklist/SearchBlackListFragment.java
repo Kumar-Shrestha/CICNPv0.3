@@ -1,6 +1,7 @@
 package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
 
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -46,7 +47,11 @@ public class SearchBlackListFragment extends Fragment implements View.OnClickLis
         {
             case R.id.searchBlacklist_button_search:
 
-
+                SearchResultFragment searchResultFragment = new SearchResultFragment();
+                android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.searchBlackList_container, searchResultFragment);
+                ft.addToBackStack(null);
+                ft.commit();
 
                 break;
         }
