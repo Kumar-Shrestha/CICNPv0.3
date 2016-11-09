@@ -6,11 +6,11 @@ package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
 public class SearchResultRecyclerDataWrapper
 {
     public String name;
-    public String image;
+    public String imageUrl;
 
-    public SearchResultRecyclerDataWrapper(String name, String image)
+    public SearchResultRecyclerDataWrapper(String name, String imageUrl)
     {
         this.name = name;
-        this.image = image;
+        this.imageUrl = imageUrl;
     }
 }

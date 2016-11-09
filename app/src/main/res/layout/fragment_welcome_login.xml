@@ -30,48 +30,54 @@
         <EditText
             android:layout_marginTop="50dp"
             android:layout_width="@dimen/welcome_edittext_width"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:textColorHint="@color/white"
             android:gravity="center"
             android:hint="Email"
-            android:background="@drawable/login_edittext"/>
+            android:inputType="textEmailAddress"
+            android:background="@drawable/login_edittext"
+            android:id="@+id/welcome_editText_email"/>
 
         <EditText
             android:layout_marginTop="20dp"
             android:layout_width="@dimen/welcome_edittext_width"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:textColor="@color/white"
             android:textAlignment="center"
             android:textColorHint="@color/white"
             android:gravity="center"
-            android:hint="Email"
+            android:hint="Password"
             android:text="sdf"
-            android:background="@drawable/login_edittext"/>
+            android:inputType="textPassword"
+            android:background="@drawable/login_edittext"
+            android:id="@+id/welcome_editText_password"/>
 
         <Button
             android:layout_width="@dimen/welcome_button_width"
             android:layout_height="wrap_content"
             android:background="@drawable/login_button"
             android:layout_marginTop="20dp"
-            android:text="Click Me"
+            android:text="Login"
             android:textColor="@color/white"
+            android:id="@+id/welcome_button_login"
             />
 
+        <!--
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:text="Forget"
-            android:textColor="@color/white"
-            />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:text="Forget"
+                android:textColor="@color/white"
+                />
 
             <View
                 android:layout_width="1dp"
@@ -88,6 +94,7 @@
                 />
 
         </LinearLayout>
+        -->
 
     </LinearLayout>
 

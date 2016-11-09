@@ -43,6 +43,20 @@ public class GrandFathersName extends Fragment implements View.OnClickListener {
         next = (Button) view.findViewById(R.id.addBlacklist_button_next);
         next.setOnClickListener(this);
 
+        if(BlackListDetails.grandFatherFirstName != null)
+        {
+            grandFatherFirstName.setText(BlackListDetails.grandFatherFirstName);
+        }
+
+        if(BlackListDetails.grandFatherMiddleName != null)
+        {
+            grandFatherMiddleName.setText(BlackListDetails.grandFatherMiddleName);
+        }
+
+        if(BlackListDetails.grandFatherLastName != null)
+        {
+            grandFatherLastName.setText(BlackListDetails.grandFatherLastName);
+        }
 
         return view;
     }
@@ -52,6 +66,11 @@ public class GrandFathersName extends Fragment implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.addBlacklist_button_next:
+
+                BlackListDetails.grandFatherFirstName = grandFatherFirstName.getText().toString();
+                BlackListDetails.grandFatherMiddleName = grandFatherMiddleName.getText().toString();
+                BlackListDetails.grandFatherLastName = grandFatherLastName.getText().toString();
+
 
                 DetailsInfo detailsInfo = new DetailsInfo();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();

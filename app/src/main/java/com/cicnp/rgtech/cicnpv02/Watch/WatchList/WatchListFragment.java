@@ -73,19 +73,17 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
         GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
         getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
             @Override
-            public void CallbackMethodForNetworkTask(final JSONObject message) {
-
+            public void CallbackMethodForNetworkTask(String message) {
                 try {
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("father_name"), R.drawable.main_background, "Father Name", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("bod"), R.drawable.main_background, "Bod", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("father_name"), R.drawable.main_background, "Father Name", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("bod"), R.drawable.main_background, "Bod", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("father_name"), R.drawable.main_background, "Father Name", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("bod"), R.drawable.main_background, "Bod", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("father_name"), R.drawable.main_background, "Father Name", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("bod"), R.drawable.main_background, "Bod", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("father_name"), R.drawable.main_background, "Father Name", "abc"));
-                    watchList.add(new WatchListRecyclerDataWrapper(message.getString("bod"), R.drawable.main_background, "Bod", "abc"));
+                    JSONObject messageObject = new JSONObject(message);
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("bod"), getString(R.string.url_testImageUrl), "Bod", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("bod"), getString(R.string.url_testImageUrl), "Bod", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("bod"), getString(R.string.url_testImageUrl), "Bod", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("bod"), getString(R.string.url_testImageUrl), "Bod", "abc"));
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override

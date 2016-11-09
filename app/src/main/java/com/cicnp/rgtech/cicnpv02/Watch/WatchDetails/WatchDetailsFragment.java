@@ -89,27 +89,34 @@ public class WatchDetailsFragment extends Fragment {
         GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
         getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
             @Override
-            public void CallbackMethodForNetworkTask(final JSONObject message) {
+            public void CallbackMethodForNetworkTask(final String message) {
+                JSONObject jsonMessage = null;
+                try {
+                    jsonMessage = new JSONObject(message);
 
-                getActivity().runOnUiThread(new Runnable() {
+                    final JSONObject finalJsonMessage = jsonMessage;
+                    getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            textView_name.setText(message.getString("black_id"));
-                            textView_fathersName.setText(message.getString("father_name"));
-                            textView_grandFathersName.setText(message.getString("grandfather_name"));
-                            textView_permanentAddress.setText(message.getString("permanent_address"));
-                            textView_dateOfBirth.setText(message.getString("bod"));
-                            textView_contactNo.setText(message.getString("contact_no"));
-                            textView_uploadedBy.setText(message.getString("upload_by"));
-                            textView_citizenshipNo.setText(message.getString("citizen_number"));
-                            textView_citizenshipIssuedPlace.setText(message.getString("citizen_issued_place"));
-                            textView_createdOn.setText(message.getString("created_on"));
+                            textView_name.setText(finalJsonMessage.getString("black_id"));
+                            textView_fathersName.setText(finalJsonMessage.getString("father_name"));
+                            textView_grandFathersName.setText(finalJsonMessage.getString("grandfather_name"));
+                            textView_permanentAddress.setText(finalJsonMessage.getString("permanent_address"));
+                            textView_dateOfBirth.setText(finalJsonMessage.getString("bod"));
+                            textView_contactNo.setText(finalJsonMessage.getString("contact_no"));
+                            textView_uploadedBy.setText(finalJsonMessage.getString("upload_by"));
+                            textView_citizenshipNo.setText(finalJsonMessage.getString("citizen_number"));
+                            textView_citizenshipIssuedPlace.setText(finalJsonMessage.getString("citizen_issued_place"));
+                            textView_createdOn.setText(finalJsonMessage.getString("created_on"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
                 });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
         getDataFromNetwork.getData();

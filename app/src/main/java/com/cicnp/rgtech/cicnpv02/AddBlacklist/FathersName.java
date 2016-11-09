@@ -40,6 +40,21 @@ public class FathersName extends Fragment implements View.OnClickListener {
         fatherMiddleName = (EditText) view.findViewById(R.id.addBlackList_editText_fatherMiddleName);
         fatherLastName = (EditText) view.findViewById(R.id.addBlackList_editText_fatherLastName);
 
+        if(BlackListDetails.fathersFirstName != null)
+        {
+            fatherFirstName.setText(BlackListDetails.fathersFirstName);
+        }
+
+        if(BlackListDetails.fathersMiddleName != null)
+        {
+            fatherMiddleName.setText(BlackListDetails.fathersMiddleName);
+        }
+
+        if(BlackListDetails.fathersLastName != null)
+        {
+            fatherLastName.setText(BlackListDetails.fathersLastName);
+        }
+
         next = (Button) view.findViewById(R.id.addBlacklist_button_next);
         next.setOnClickListener(this);
 
@@ -51,6 +66,10 @@ public class FathersName extends Fragment implements View.OnClickListener {
         switch(v.getId())
         {
             case R.id.addBlacklist_button_next:
+
+                BlackListDetails.fathersFirstName = fatherFirstName.getText().toString();
+                BlackListDetails.fathersMiddleName = fatherMiddleName.getText().toString();
+                BlackListDetails.fathersLastName = fatherLastName.getText().toString();
 
                 GrandFathersName grandFathersName = new GrandFathersName();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();

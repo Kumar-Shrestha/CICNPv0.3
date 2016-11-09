@@ -46,7 +46,7 @@ public class GetDataFromNetwork{
                         Log.d("TAG", responseJSON);
                         if (response.isSuccessful()) {
                             final JSONObject object = new JSONObject(responseJSON);
-                            final JSONObject message = object.getJSONObject("message");
+                            final String message = object.getString("message");
 
                             networkTaskInterface.CallbackMethodForNetworkTask(message);
                         }
@@ -55,7 +55,7 @@ public class GetDataFromNetwork{
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(activity, "Error while uploading information. Error: " , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity, "Error while uploading information. " , Toast.LENGTH_SHORT).show();
                             }
                         });
                     } catch (JSONException e) {
@@ -63,7 +63,7 @@ public class GetDataFromNetwork{
                         activity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(activity, "Error while uploading information. Error: " , Toast.LENGTH_SHORT).show();
+                                Toast.makeText(activity, "Error while uploading information. " , Toast.LENGTH_SHORT).show();
                             }
                         });
                     }

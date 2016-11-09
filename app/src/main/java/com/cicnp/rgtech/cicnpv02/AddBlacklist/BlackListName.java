@@ -44,6 +44,21 @@ public class BlackListName extends Fragment implements View.OnClickListener {
         textView_blackListMiddleName = (TextView) view.findViewById(R.id.addBlackList_editText_middleName);
         textView_blackListLastName = (TextView) view.findViewById(R.id.addBlackList_editText_lastName);
 
+        if(BlackListDetails.firstName != null)
+        {
+            textView_blackListFirstName.setText(BlackListDetails.firstName);
+        }
+
+        if(BlackListDetails.middleName != null)
+        {
+            textView_blackListMiddleName.setText(BlackListDetails.middleName);
+        }
+
+        if(BlackListDetails.lastName != null)
+        {
+            textView_blackListFirstName.setText(BlackListDetails.lastName);
+        }
+
         return view;
     }
 
@@ -55,7 +70,6 @@ public class BlackListName extends Fragment implements View.OnClickListener {
                 BlackListDetails.firstName = textView_blackListFirstName.getText().toString();
                 BlackListDetails.middleName = textView_blackListMiddleName.getText().toString();
                 BlackListDetails.lastName = textView_blackListLastName.getText().toString();
-
 
                 AddressDOB addressDOB = new AddressDOB();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();

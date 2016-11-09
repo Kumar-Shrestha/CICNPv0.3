@@ -7,13 +7,13 @@ public class WatchListRecyclerDataWrapper
 {
     public String uniqueVariable;
     public String name;
-    public int imageID;
+    public String imageUrl;
     public String secondaryInfo;
 
-    public WatchListRecyclerDataWrapper(String name, int imageID, String secondaryInfo, String uniqueVariable)
+    public WatchListRecyclerDataWrapper(String name, String imageUrl, String secondaryInfo, String uniqueVariable)
     {
         this.name = name;
-        this.imageID = imageID;
+        this.imageUrl = imageUrl;
         this.secondaryInfo = secondaryInfo;
         this.uniqueVariable = uniqueVariable;
     }

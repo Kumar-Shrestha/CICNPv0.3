@@ -6,19 +6,41 @@
     android:background="@drawable/search_blacklist_background">
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:background="#11FFFFFF">
+
+        <!--
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="Criteria"
+            android:layout_marginRight="10dp"/>
+        -->
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchBlackList_spinner_searchCriteria"
+            android:gravity="center_horizontal"
+            android:popupBackground="@color/colorPrimaryDark"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="20dp">
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchBlackList_spinner_searchCriteria"
-            >
 
-        </Spinner>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -34,11 +56,10 @@
                 android:hint="Blacklist's Name"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:singleLine="true"/>
 
         </android.support.design.widget.TextInputLayout>
-
 
         <Button
             android:layout_width="wrap_content"

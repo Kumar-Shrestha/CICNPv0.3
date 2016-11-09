@@ -23,12 +23,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
+import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
 import com.cicnp.rgtech.cicnpv02.OKHttp.SucessOrFail;
 import com.cicnp.rgtech.cicnpv02.Photo.PhotoUpload;
 import com.cicnp.rgtech.cicnpv02.R;
+import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,6 +41,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -231,7 +237,46 @@ public class Photo extends Fragment implements View.OnClickListener {
         switch(v.getId())
         {
             case R.id.addBlacklist_button_submit:
-                photoUpload.uploadImage(imagePath, "PhotoName");
+
+                String photoName = BlackListDetails.citizenshipNo + "_profile_pic";
+                BlackListDetails.photoName = photoName;
+
+                //Get data from network
+                String reg_url = getString(R.string.url_register_black_list);
+                RequestBody registerFormBody = new FormBody.Builder()
+                        .add("name", BlackListDetails.firstName + " " +
+                                BlackListDetails.middleName + " " +
+                                BlackListDetails.lastName)
+                        .add("father_name", BlackListDetails.fathersFirstName + " " +
+                                BlackListDetails.fathersMiddleName + " " +
+                                BlackListDetails.fathersLastName)
+                        .add("grandfather_name", BlackListDetails.grandFatherFirstName + " " +
+                                BlackListDetails.grandFatherMiddleName + " " +
+                                BlackListDetails.grandFatherLastName)
+                        .add("permanent_address", BlackListDetails.permanentAddress)
+                        .add("bod", BlackListDetails.birthYear + "-" +
+                                BlackListDetails.birthMonth + "-" +
+                                BlackListDetails.birthDay)
+                        .add("contact_no", BlackListDetails.contactNo)
+                        .add("citizen_number", BlackListDetails.citizenshipNo)
+                        .add("citizen_issued_place", BlackListDetails.citizenshipIssuedPlace)
+                        //TODO: user sharedPreferences for organization name
+                        .add("upload_by", "MyOrg")
+                        .add("organization_id","3")
+                        .add("photo_name", photoName)
+                        .build();
+                GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
+                getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+                    @Override
+                    public void CallbackMethodForNetworkTask(String message) {
+                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                getDataFromNetwork.getData();
+
+                photoUpload.uploadImage(imagePath, photoName);
                 break;
 
             case R.id.addBlacklist_imageView_photo:

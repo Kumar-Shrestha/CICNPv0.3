@@ -23,15 +23,16 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, token);
-        registerToken(token);
+        registerToken(token,"2");
     }
 
-    private void registerToken(String token) {
+    private void registerToken(String token, String organizationId) {
 
         OkHttpClient client = new OkHttpClient();
 
         RequestBody body = new FormBody.Builder()
                 .add("token", token)
+                .add("org_id",organizationId)
                 .build();
 
         Request request = new Request.Builder()

@@ -2,6 +2,7 @@ package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
 
 
 import android.app.FragmentTransaction;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -48,14 +49,17 @@ public class SearchBlackListFragment extends Fragment implements View.OnClickLis
         // Spinner element
         spinner_criteria = (Spinner) view.findViewById(R.id.searchBlackList_spinner_searchCriteria);
 
+        //Change spinner color
+        spinner_criteria.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimaryLight), PorterDuff.Mode.SRC_ATOP);
+
         String[] criteria = getResources().getStringArray(R.array.search_criteria);
         List<String> countryList = new ArrayList<String>(Arrays.asList(criteria));
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, countryList);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), R.layout.search_spinner_item, countryList);
 
         // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(R.layout.search_spinner_dropdown_item);
 
         // attaching data adapter to spinner
         spinner_criteria.setAdapter(dataAdapter);

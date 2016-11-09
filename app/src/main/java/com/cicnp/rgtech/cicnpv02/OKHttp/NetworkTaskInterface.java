@@ -9,5 +9,5 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 public interface NetworkTaskInterface {
-    public void CallbackMethodForNetworkTask(JSONObject message);
+    public void CallbackMethodForNetworkTask(String message);
 }

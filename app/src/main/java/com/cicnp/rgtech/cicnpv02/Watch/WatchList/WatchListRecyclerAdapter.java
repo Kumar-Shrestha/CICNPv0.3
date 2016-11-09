@@ -53,12 +53,11 @@ public class WatchListRecyclerAdapter extends RecyclerView.Adapter<WatchListRecy
         holder.priority.setText(recyclerDataList.get(position).secondaryInfo.toString());
 
         Picasso.with(context)
-                .load(context.getString(R.string.url_testImageUrl))
+                .load(recyclerDataList.get(position).imageUrl)
                 .resize((int)context.getResources().getDimension(R.dimen.watchlist_imageSize),(int)context.getResources().getDimension(R.dimen.watchlist_imageSize))
                 .placeholder(R.drawable.dot)
                 .into(holder.image);
 
-        //holder.image.setImageResource(recyclerDataList.get(position).imageID);
     }
 
     @Override

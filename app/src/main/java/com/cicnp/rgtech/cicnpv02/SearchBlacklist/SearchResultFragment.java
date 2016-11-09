@@ -49,6 +49,7 @@ public class SearchResultFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
+        searchList.add(new SearchResultRecyclerDataWrapper("Name" , getString(R.string.url_testImageUrl)));
 
         return view;
     }

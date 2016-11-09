@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cicnp.rgtech.cicnpv02.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class SearchResultRecyclerAdapter extends RecyclerView.Adapter<SearchResu
 
         public ViewHolder(View view){
             super(view);
-            name = (TextView) view.findViewById(R.id.search_result_recycler_row_text);
+            name = (TextView) view.findViewById(R.id.search_result_recycler_row_name);
             image = (ImageView) view.findViewById(R.id.search_result_recycler_row_image);
         }
     }
@@ -37,18 +38,20 @@ public class SearchResultRecyclerAdapter extends RecyclerView.Adapter<SearchResu
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         this.context = parent.getContext();
-        View itemView = LayoutInflater.from(context).inflate(R.layout.navigation_recycler_row, parent, false);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.search_result_recycler_row, parent, false);
 
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name.setText(recyclerDataList.get(position).name.toString());
+        holder.name.setText(recyclerDataList.get(position).name);
 
-        String uri = "@drawable/" + recyclerDataList.get(position).image;
-        int imageResource = context.getResources().getIdentifier(uri, null, context.getPackageName());
-        holder.image.setImageResource(imageResource);
+        Picasso.with(context)
+                .load(recyclerDataList.get(position).imageUrl)
+                .resize((int)context.getResources().getDimension(R.dimen.watchlist_imageSize),(int)context.getResources().getDimension(R.dimen.watchlist_imageSize))
+                .placeholder(R.drawable.dot)
+                .into(holder.image);
     }
 
     @Override

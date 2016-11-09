@@ -40,6 +40,21 @@ public class DetailsInfo extends Fragment implements View.OnClickListener {
         citizenshipNumber = (EditText) view.findViewById(R.id.addBlackList_editText_citizenshipNumber);
         citizenshipIssuedPlace = (EditText) view.findViewById(R.id.addBlackList_editText_citizenshipIssuedPlace);
 
+        if(BlackListDetails.contactNo != null)
+        {
+            contactNumber.setText(BlackListDetails.contactNo);
+        }
+
+        if(BlackListDetails.citizenshipNo != null)
+        {
+            citizenshipNumber.setText(BlackListDetails.citizenshipNo);
+        }
+
+        if(BlackListDetails.citizenshipIssuedPlace != null)
+        {
+            citizenshipIssuedPlace.setText(BlackListDetails.citizenshipIssuedPlace);
+        }
+
         button = (Button) view.findViewById(R.id.addBlacklist_button_next);
         button.setOnClickListener(this);
 
@@ -51,6 +66,10 @@ public class DetailsInfo extends Fragment implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.addBlacklist_button_next:
+
+                BlackListDetails.contactNo = contactNumber.getText().toString();
+                BlackListDetails.citizenshipNo = citizenshipNumber.getText().toString();
+                BlackListDetails.citizenshipIssuedPlace = citizenshipIssuedPlace.getText().toString();
 
                 Photo photo = new Photo();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();

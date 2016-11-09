@@ -43,6 +43,20 @@ public class AddressDOB extends Fragment implements View.OnClickListener {
         next = (Button) view.findViewById(R.id.addBlacklist_button_next);
         next.setOnClickListener(this);
 
+        if(BlackListDetails.permanentAddress != null)
+        {
+            permanentAddress.setText(BlackListDetails.permanentAddress);
+        }
+
+        if(BlackListDetails.birthDay != null
+                && BlackListDetails.birthMonth != null
+                && BlackListDetails.birthYear != null)
+        {
+            dateOfBirth.updateDate(Integer.valueOf(BlackListDetails.birthYear),
+                    Integer.valueOf(BlackListDetails.birthMonth),
+                    Integer.valueOf(BlackListDetails.birthDay));
+        }
+
         return view;
     }
 
@@ -51,6 +65,11 @@ public class AddressDOB extends Fragment implements View.OnClickListener {
         switch (v.getId())
         {
             case R.id.addBlacklist_button_next:
+
+                BlackListDetails.permanentAddress = permanentAddress.getText().toString();
+                BlackListDetails.birthYear = String.valueOf(dateOfBirth.getYear());
+                BlackListDetails.birthMonth = String.valueOf(dateOfBirth.getMonth());
+                BlackListDetails.birthDay = String.valueOf(dateOfBirth.getDayOfMonth());
 
                 FathersName fathersName = new FathersName();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
