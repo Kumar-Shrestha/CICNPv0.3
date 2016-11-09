@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerAdapter;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -85,19 +87,29 @@ public class SearchResultFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                JSONObject messageObject = new JSONObject(message);
-                                searchList.add(new SearchResultRecyclerDataWrapper( messageObject.getString("name") , getString(R.string.url_testImageUrl)));
 
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        adapter.notifyDataSetChanged();
-                                    }
-                                });
+                            try {
+                                // jsonString is a string variable that holds the JSON
+                                JSONArray itemArray=new JSONArray(message);
+                                for (int i = 0; i < itemArray.length(); i++) {
+                                    JSONObject object=itemArray.getJSONObject(i);
+
+                                    searchList.add(new SearchResultRecyclerDataWrapper( object.getString("name") , getString(R.string.url_testImageUrl)));
+
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            adapter.notifyDataSetChanged();
+                                        }
+                                    });
+
+                                }
                             } catch (JSONException e) {
+                                // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
+
+                            //JSONObject messageObject = new JSONObject(message);
 
                         }
                     });
@@ -106,7 +118,6 @@ public class SearchResultFragment extends Fragment {
         });
 
         getDataFromNetwork.getData();
-
 
         //searchList.add(new SearchResultRecyclerDataWrapper("Name" , getString(R.string.url_testImageUrl)));
 
