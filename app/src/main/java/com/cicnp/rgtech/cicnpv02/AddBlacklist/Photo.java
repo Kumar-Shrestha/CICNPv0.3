@@ -268,8 +268,13 @@ public class Photo extends Fragment implements View.OnClickListener {
                 GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
                 getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
                     @Override
-                    public void CallbackMethodForNetworkTask(String message) {
-                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                    public void CallbackMethodForNetworkTask(final String message) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                     }
                 });
