@@ -8,13 +8,22 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
+import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
 import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerAdapter;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,7 +58,57 @@ public class SearchResultFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        searchList.add(new SearchResultRecyclerDataWrapper("Name" , getString(R.string.url_testImageUrl)));
+
+
+
+        //Get data from network
+        String reg_url = getString(R.string.url_userDetail);
+        RequestBody registerFormBody = new FormBody.Builder()
+                .add("criteria", SearchBlackListFragment.searchCriteria)
+                .add("value", SearchBlackListFragment.searchContent)
+                .build();
+        GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
+        getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+            @Override
+            public void CallbackMethodForNetworkTask(final String message) {
+                if(message.equals("failure"))
+                {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getContext(), "No data", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JSONObject messageObject = new JSONObject(message);
+                                searchList.add(new SearchResultRecyclerDataWrapper( messageObject.getString("name") , getString(R.string.url_testImageUrl)));
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+                }
+            }
+        });
+
+        getDataFromNetwork.getData();
+
+
+        //searchList.add(new SearchResultRecyclerDataWrapper("Name" , getString(R.string.url_testImageUrl)));
 
         return view;
     }

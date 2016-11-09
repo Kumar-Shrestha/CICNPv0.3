@@ -30,6 +30,9 @@ public class SearchBlackListFragment extends Fragment implements View.OnClickLis
     Button button_search;
     Spinner spinner_criteria;
 
+    public static String searchContent;
+    public static String searchCriteria;
+
     public SearchBlackListFragment() {
         // Required empty public constructor
     }
@@ -72,6 +75,17 @@ public class SearchBlackListFragment extends Fragment implements View.OnClickLis
         switch (v.getId())
         {
             case R.id.searchBlacklist_button_search:
+
+                searchContent = editText_search.getText().toString();
+                switch(spinner_criteria.getSelectedItem().toString())
+                {
+                    case "Name":
+                        searchCriteria = "name";
+                        break;
+                    case "Citizenship Number":
+                        searchCriteria = "citizen";
+                        break;
+                }
 
                 SearchResultFragment searchResultFragment = new SearchResultFragment();
                 android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();

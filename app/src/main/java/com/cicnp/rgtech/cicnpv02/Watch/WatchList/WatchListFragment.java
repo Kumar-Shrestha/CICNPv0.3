@@ -68,7 +68,8 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
         //Get data from network
         String reg_url = getString(R.string.url_userDetail);
         RequestBody registerFormBody = new FormBody.Builder()
-                .add("name", "abc")
+                .add("criteria","name")
+                .add("value", "abc")
                 .build();
         GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
         getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
@@ -117,6 +118,7 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
         watchDetailsFragment.setArguments(bundle);
         android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.watch_container, watchDetailsFragment);
+        ft.addToBackStack(null);
         ft.commit();
     }
 
