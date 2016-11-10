@@ -66,14 +66,14 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
         {
             case R.id.welcome_button_login:
 
-                //Get data from network
+                //Register token
                 String reg_url = getString(R.string.url_register_user_token);
-                RequestBody registerFormBody = new FormBody.Builder()
+                RequestBody registerTokenBody = new FormBody.Builder()
                         .add("token", FirebaseInstanceId.getInstance().getToken())
                         .add("org_id","2")
                         .build();
 
-                GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
+                GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerTokenBody, getActivity());
                 getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
                     @Override
                     public void CallbackMethodForNetworkTask(final String message) {
@@ -85,13 +85,46 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                                 {
                                     Toast.makeText(getContext(), "Token success", Toast.LENGTH_SHORT).show();
                                 }
+                                else
+                                {
+                                    Toast.makeText(getContext(), "Token already registered", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
                     }
                 });
                 getDataFromNetwork.getData();
 
-                startActivity(new Intent("CICNP.Main"));
+
+                //Login
+                String login_url = getString(R.string.url_register_user_token);
+                RequestBody loginBody = new FormBody.Builder()
+                        .add("email", email.getText().toString())
+                        .add("password",password.getText().toString())
+                        .build();
+
+                GetDataFromNetwork getLoginRequestFromNetwork = new GetDataFromNetwork(login_url, loginBody, getActivity());
+                getLoginRequestFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+                    @Override
+                    public void CallbackMethodForNetworkTask(final String message) {
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(message.toString().equals("failure"))
+                                {
+                                    Toast.makeText(getContext(), "Login Failed. Please Retry.", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    startActivity(new Intent("CICNP.Main"));
+                                }
+                            }
+                        });
+                    }
+                });
+                getDataFromNetwork.getData();
+
 
                 break;
 

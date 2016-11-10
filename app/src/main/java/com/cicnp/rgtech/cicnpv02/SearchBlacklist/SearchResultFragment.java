@@ -62,7 +62,6 @@ public class SearchResultFragment extends Fragment {
 
 
 
-
         //Get data from network
         String reg_url = getString(R.string.url_userDetail);
         RequestBody registerFormBody = new FormBody.Builder()
@@ -89,8 +88,8 @@ public class SearchResultFragment extends Fragment {
                         public void run() {
 
                             try {
-                                // jsonString is a string variable that holds the JSON
                                 JSONArray itemArray=new JSONArray(message);
+
                                 for (int i = 0; i < itemArray.length(); i++) {
                                     JSONObject object=itemArray.getJSONObject(i);
 
@@ -118,8 +117,6 @@ public class SearchResultFragment extends Fragment {
         });
 
         getDataFromNetwork.getData();
-
-        //searchList.add(new SearchResultRecyclerDataWrapper("Name" , getString(R.string.url_testImageUrl)));
 
         return view;
     }
