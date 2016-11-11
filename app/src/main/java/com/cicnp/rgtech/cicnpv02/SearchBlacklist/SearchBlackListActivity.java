@@ -1,10 +1,10 @@
 package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
 
-import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.cicnp.rgtech.cicnpv02.R;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchBlackListFragment;
 
 public class SearchBlackListActivity extends AppCompatActivity {
 

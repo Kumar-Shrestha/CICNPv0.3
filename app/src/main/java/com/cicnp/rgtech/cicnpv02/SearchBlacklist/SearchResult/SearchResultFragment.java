@@ -1,11 +1,11 @@
-package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
+package com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchResult;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +15,12 @@ import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
 import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
 import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchDetails.SearchDetailsFragment;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchBlackListFragment;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchResultRecyclerAdapter;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchResultRecyclerDataWrapper;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchDetails.WatchDetailsFragment;
-import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerAdapter;
-import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -46,22 +47,9 @@ public class SearchResultFragment extends Fragment implements RecyclerItemClickL
         adapter = new SearchResultRecyclerAdapter(searchList);
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_search_result, container, false);
-
-
-        //Define recyclerview
-        recyclerView = (RecyclerView) view.findViewById(R.id.searchBlacklist_recyclerView_result);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, this));
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         //Get data from network
         String reg_url = getString(R.string.url_userDetail);
@@ -94,16 +82,17 @@ public class SearchResultFragment extends Fragment implements RecyclerItemClickL
                                 for(int i=0; i<messageObject.length(); i++)
                                 {
                                     JSONObject object = messageObject.getJSONObject(Integer.toString(i));
-                                    searchList.add(new SearchResultRecyclerDataWrapper(object.getString("father_name"), getString(R.string.url_testImageUrl)));
+                                    searchList.add(new SearchResultRecyclerDataWrapper(object.getString("name"),
+                                            getString(R.string.url_localPhoto)+ object.getString("photo")));
                                 }
-                                    getActivity().runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            adapter.notifyDataSetChanged();
-                                        }
-                                    });
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                });
 
-                                } catch (JSONException e1) {
+                            } catch (JSONException e1) {
                                 e1.printStackTrace();
                             }
 
@@ -117,18 +106,38 @@ public class SearchResultFragment extends Fragment implements RecyclerItemClickL
         getDataFromNetwork.getData();
 
 
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_search_result, container, false);
+
+
+        //Define recyclerview
+        recyclerView = (RecyclerView) view.findViewById(R.id.searchBlacklist_recyclerView_result);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, this));
+
+
+
 
         return view;
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        WatchDetailsFragment watchDetailsFragment = new WatchDetailsFragment();
+        SearchDetailsFragment searchDetailsFragment = new SearchDetailsFragment();
         Bundle bundle = new Bundle();
         bundle.putString("UniqueVariable", searchList.get(position).name);
-        watchDetailsFragment.setArguments(bundle);
+        searchDetailsFragment.setArguments(bundle);
         android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.searchBlackList_container, watchDetailsFragment);
+        ft.replace(R.id.searchBlackList_container, searchDetailsFragment);
         ft.addToBackStack(null);
         ft.commit();
     }

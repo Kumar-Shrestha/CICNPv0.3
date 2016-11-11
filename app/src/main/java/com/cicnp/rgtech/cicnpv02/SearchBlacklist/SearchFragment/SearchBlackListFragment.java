@@ -1,7 +1,6 @@
-package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
+package com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment;
 
 
-import android.app.FragmentTransaction;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.cicnp.rgtech.cicnpv02.R;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchResult.SearchResultFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

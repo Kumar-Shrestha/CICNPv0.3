@@ -2,6 +2,7 @@ package com.cicnp.rgtech.cicnpv02.Watch.WatchList;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,6 +42,47 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
         adapter = new WatchListRecyclerAdapter(watchList);
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //Get data from network
+        String reg_url = getString(R.string.url_userDetail);
+        RequestBody registerFormBody = new FormBody.Builder()
+                .add("criteria","name")
+                .add("value", "abc")
+                .build();
+        GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
+        getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+            @Override
+            public void CallbackMethodForNetworkTask(String message) {
+                try {
+                    JSONObject messageObject = new JSONObject(message);
+
+                    for(int i=0; i<messageObject.length(); i++)
+                    {
+                        JSONObject object = messageObject.getJSONObject(Integer.toString(i));
+                        watchList.add(new WatchListRecyclerDataWrapper(object.getString("name"),
+                                getString(R.string.url_localPhoto) + object.getString("photo"),
+                                object.getString("contact_no"),
+                                "abc"));
+                    }
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        getDataFromNetwork.getData();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,42 +107,7 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
 
 
 
-        //Get data from network
-        String reg_url = getString(R.string.url_userDetail);
-        RequestBody registerFormBody = new FormBody.Builder()
-                .add("criteria","name")
-                .add("value", "abc")
-                .build();
-        GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
-        getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
-            @Override
-            public void CallbackMethodForNetworkTask(String message) {
-                try {
-                    JSONObject messageObject = new JSONObject(message);
 
-                    for(int i=0; i<messageObject.length(); i++)
-                    {
-                        JSONObject object = messageObject.getJSONObject(Integer.toString(i));
-                        watchList.add(new WatchListRecyclerDataWrapper(object.getString("name"),
-                                getString(R.string.url_localPhoto) + object.getString("photo"),
-                                object.getString("contact_no"),
-                                "abc"));
-                    }
-                    
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        getDataFromNetwork.getData();
 
 
 

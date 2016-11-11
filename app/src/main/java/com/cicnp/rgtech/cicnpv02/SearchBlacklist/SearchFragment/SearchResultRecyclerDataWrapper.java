@@ -1,4 +1,4 @@
-package com.cicnp.rgtech.cicnpv02.SearchBlacklist;
+package com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment;
 
 /**
  * Created by Kumar-PC on 7/23/2016.
