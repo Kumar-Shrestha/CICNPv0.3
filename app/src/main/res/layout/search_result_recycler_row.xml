@@ -26,6 +26,7 @@
                 android:id="@+id/search_result_recycler_row_name"
                 android:textSize="15sp"
                 android:text="Name"
+                android:textColor="@color/white"
                 android:layout_marginLeft="10dp"/>
 
     </LinearLayout>

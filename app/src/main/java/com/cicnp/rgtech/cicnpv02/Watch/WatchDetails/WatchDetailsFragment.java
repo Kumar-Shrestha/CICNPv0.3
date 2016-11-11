@@ -44,7 +44,6 @@ public class WatchDetailsFragment extends Fragment {
     TextView textView_createdOn;
     TextView textView_uploadedBy;
 
-    Button button;
 
     //View
     View view;
@@ -83,7 +82,8 @@ public class WatchDetailsFragment extends Fragment {
 
         String reg_url = getString(R.string.url_userDetail);
         RequestBody registerFormBody = new FormBody.Builder()
-                .add("name", uniqueVariable)
+                .add("criteria", "name")
+                .add("value", uniqueVariable)
                 .build();
 
         GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
@@ -92,28 +92,33 @@ public class WatchDetailsFragment extends Fragment {
             public void CallbackMethodForNetworkTask(final String message) {
                 JSONObject jsonMessage = null;
                 try {
-                    jsonMessage = new JSONObject(message);
+                    JSONObject messageObject = new JSONObject(message);
 
-                    final JSONObject finalJsonMessage = jsonMessage;
-                    getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            textView_name.setText(finalJsonMessage.getString("black_id"));
-                            textView_fathersName.setText(finalJsonMessage.getString("father_name"));
-                            textView_grandFathersName.setText(finalJsonMessage.getString("grandfather_name"));
-                            textView_permanentAddress.setText(finalJsonMessage.getString("permanent_address"));
-                            textView_dateOfBirth.setText(finalJsonMessage.getString("bod"));
-                            textView_contactNo.setText(finalJsonMessage.getString("contact_no"));
-                            textView_uploadedBy.setText(finalJsonMessage.getString("upload_by"));
-                            textView_citizenshipNo.setText(finalJsonMessage.getString("citizen_number"));
-                            textView_citizenshipIssuedPlace.setText(finalJsonMessage.getString("citizen_issued_place"));
-                            textView_createdOn.setText(finalJsonMessage.getString("created_on"));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    for(int i=0; i<messageObject.length(); i++)
+                    {
+                        final JSONObject object = messageObject.getJSONObject(Integer.toString(i));
+
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    textView_name.setText(object.getString("name"));
+                                    textView_fathersName.setText(object.getString("father_name"));
+                                    textView_grandFathersName.setText(object.getString("grandfather_name"));
+                                    textView_permanentAddress.setText(object.getString("permanent_address"));
+                                    textView_dateOfBirth.setText(object.getString("bod"));
+                                    textView_contactNo.setText(object.getString("contact_no"));
+                                    textView_uploadedBy.setText(object.getString("upload_by"));
+                                    textView_citizenshipNo.setText(object.getString("citizen_number"));
+                                    textView_citizenshipIssuedPlace.setText(object.getString("citizen_issued_place"));
+                                    textView_createdOn.setText(object.getString("created_on"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
                     }
-                });
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

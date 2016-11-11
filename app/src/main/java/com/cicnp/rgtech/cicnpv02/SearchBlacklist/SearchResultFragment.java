@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
 import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
 import com.cicnp.rgtech.cicnpv02.R;
+import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
+import com.cicnp.rgtech.cicnpv02.Watch.WatchDetails.WatchDetailsFragment;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerAdapter;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 
@@ -30,7 +32,7 @@ import okhttp3.RequestBody;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchResultFragment extends Fragment {
+public class SearchResultFragment extends Fragment implements RecyclerItemClickListener.OnItemClickListener {
 
     View view;
 
@@ -59,8 +61,7 @@ public class SearchResultFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.setAdapter(adapter);
-
-
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, this));
 
         //Get data from network
         String reg_url = getString(R.string.url_userDetail);
@@ -88,13 +89,13 @@ public class SearchResultFragment extends Fragment {
                         public void run() {
 
                             try {
-                                JSONArray itemArray=new JSONArray(message);
+                                JSONObject messageObject = new JSONObject(message);
 
-                                for (int i = 0; i < itemArray.length(); i++) {
-                                    JSONObject object=itemArray.getJSONObject(i);
-
-                                    searchList.add(new SearchResultRecyclerDataWrapper( object.getString("name") , getString(R.string.url_testImageUrl)));
-
+                                for(int i=0; i<messageObject.length(); i++)
+                                {
+                                    JSONObject object = messageObject.getJSONObject(Integer.toString(i));
+                                    searchList.add(new SearchResultRecyclerDataWrapper(object.getString("father_name"), getString(R.string.url_testImageUrl)));
+                                }
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -102,13 +103,10 @@ public class SearchResultFragment extends Fragment {
                                         }
                                     });
 
-                                }
-                            } catch (JSONException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
+                                } catch (JSONException e1) {
+                                e1.printStackTrace();
                             }
 
-                            //JSONObject messageObject = new JSONObject(message);
 
                         }
                     });
@@ -118,7 +116,25 @@ public class SearchResultFragment extends Fragment {
 
         getDataFromNetwork.getData();
 
+
+
         return view;
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+        WatchDetailsFragment watchDetailsFragment = new WatchDetailsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("UniqueVariable", searchList.get(position).name);
+        watchDetailsFragment.setArguments(bundle);
+        android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.searchBlackList_container, watchDetailsFragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void onLongItemClick(View view, int position) {
+
+    }
 }
