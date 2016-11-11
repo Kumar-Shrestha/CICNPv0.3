@@ -36,6 +36,7 @@
             android:textColorHint="@color/white"
             android:gravity="center"
             android:hint="Email"
+            android:text="a@gmail.com"
             android:inputType="textEmailAddress"
             android:background="@drawable/login_edittext"
             android:id="@+id/welcome_editText_email"/>
@@ -49,7 +50,7 @@
             android:textColorHint="@color/white"
             android:gravity="center"
             android:hint="Password"
-            android:text="sdf"
+            android:text="a"
             android:inputType="textPassword"
             android:background="@drawable/login_edittext"
             android:id="@+id/welcome_editText_password"/>

@@ -1,6 +1,8 @@
 package com.cicnp.rgtech.cicnpv02.NavigationBar;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,15 +17,19 @@ import android.widget.Toast;
 
 import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
+import com.cicnp.rgtech.cicnpv02.WelcomeScreen.WelcomeActivity;
+import com.squareup.picasso.Picasso;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NavigationFragment extends Fragment implements RecyclerItemClickListener.OnItemClickListener {
+public class NavigationFragment extends Fragment implements RecyclerItemClickListener.OnItemClickListener, View.OnClickListener {
 
     //Main View
     View view;
@@ -57,6 +63,24 @@ public class NavigationFragment extends Fragment implements RecyclerItemClickLis
         logout = (Button) view.findViewById(R.id.nav_button_logout);
         recyclerView = (RecyclerView) view.findViewById(R.id.nav_recyclerView);
 
+
+        //Update Username
+        userName.setText(getActivity().getSharedPreferences(getResources().getString(R.string.shared_preferences_key), MODE_PRIVATE)
+                .getString("OrganizationFirstName", "N/A"));
+
+
+        //Update profile picture
+        String photoName = getActivity().getSharedPreferences(getResources().getString(R.string.shared_preferences_key), MODE_PRIVATE)
+                .getString("OrganizationPhoto", null);
+        Picasso.with(getContext())
+                .load(getString(R.string.url_localPhoto)+ photoName)
+                .placeholder(R.drawable.dot)
+                .into(profilePic);
+
+
+        //Logout click listener
+        logout.setOnClickListener(this);
+
         //Get data from string.xml
         String[] titleList = getResources().getStringArray(R.array.nav_recyclerView_title);
         String[] imageList = getResources().getStringArray(R.array.nav_recyclerView_images);
@@ -84,5 +108,21 @@ public class NavigationFragment extends Fragment implements RecyclerItemClickLis
     @Override
     public void onLongItemClick(View view, int position) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.nav_button_logout:
+
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getResources().getString(R.string.shared_preferences_key), MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("LoggedIn", false).apply();
+
+                startActivity(new Intent(getContext(), WelcomeActivity.class));
+
+                break;
+        }
     }
 }

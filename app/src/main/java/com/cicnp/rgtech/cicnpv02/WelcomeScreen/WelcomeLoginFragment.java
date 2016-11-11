@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.cicnp.rgtech.cicnpv02.MainActivity;
 import com.cicnp.rgtech.cicnpv02.Notification.FirebaseInstanceIDService;
 import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
 import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
@@ -100,7 +101,7 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
 
 
                 //Login
-                String login_url = getString(R.string.url_register_user_token);
+                String login_url = getString(R.string.url_login);
                 RequestBody loginBody = new FormBody.Builder()
                         .add("email", email.getText().toString())
                         .add("password",password.getText().toString())
@@ -122,7 +123,6 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                                 else
                                 {
                                     //Save logged in organization's information
-
                                     try {
                                         JSONObject messageObject = new JSONObject(message);
 
@@ -130,20 +130,35 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                         //TODO: Set values according to message JSON
-                                        editor.putString("OrganizationName", messageObject.getString("name")).apply();
+                                        editor.putBoolean("LoggedIn", true).apply();
+                                        editor.putString("OrganizationFirstName", messageObject.getString("name")).apply();
+                                        editor.putString("OrganizationMiddleName", messageObject.getString("middlename")).apply();
+                                        editor.putString("OrganizationLastName", messageObject.getString("lastname")).apply();
+                                        editor.putString("OrganizationAddress", messageObject.getString("address")).apply();
+                                        editor.putString("OrganizationContactNumber", messageObject.getString("contact_no")).apply();
+                                        editor.putString("OrganizationActive", messageObject.getString("active")).apply();
+                                        editor.putString("OrganizationContactPerson", messageObject.getString("contact_person")).apply();
+                                        editor.putString("OrganizationUserType", messageObject.getString("usertype")).apply();
+                                        editor.putString("OrganizationPurpose", messageObject.getString("purpose")).apply();
+                                        editor.putString("OrganizationExpiredDate", messageObject.getString("expired_date")).apply();
+                                        editor.putString("OrganizationPhoto", messageObject.getString("photo")).apply();
+                                        editor.putString("OrganizationRegistrationDate", messageObject.getString("reg_date")).apply();
+                                        editor.putString("OrganizationRegistrationNumber", messageObject.getString("reg_no")).apply();
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+
+                                    startActivity(new Intent(getContext(), MainActivity.class));
 
                                 }
                             }
                         });
                     }
                 });
-                getDataFromNetwork.getData();
+                getLoginRequestFromNetwork.getData();
 
-                startActivity(new Intent("CICNP.Main"));
+
 
                 break;
 
