@@ -77,7 +77,14 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
             public void CallbackMethodForNetworkTask(String message) {
                 try {
                     JSONObject messageObject = new JSONObject(message);
-                    watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+
+                    for(int i=0; i<messageObject.length(); i++)
+                    {
+                        JSONObject object = messageObject.getJSONObject(Integer.toString(i));
+                        watchList.add(new WatchListRecyclerDataWrapper(object.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+                    }
+
+                    watchList.add(new WatchListRecyclerDataWrapper(Integer.toString(messageObject.length()), getString(R.string.url_testImageUrl), "Father Name", "abc"));
                     watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("bod"), getString(R.string.url_testImageUrl), "Bod", "abc"));
                     watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("father_name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
                     watchList.add(new WatchListRecyclerDataWrapper(messageObject.getString("bod"), getString(R.string.url_testImageUrl), "Bod", "abc"));

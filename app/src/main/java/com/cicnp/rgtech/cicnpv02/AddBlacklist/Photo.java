@@ -261,6 +261,7 @@ public class Photo extends Fragment implements View.OnClickListener {
                         .add("citizen_number", BlackListDetails.citizenshipNo)
                         .add("citizen_issued_place", BlackListDetails.citizenshipIssuedPlace)
                         //TODO: user sharedPreferences for organization name
+
                         .add("upload_by", "MyOrg")
                         .add("organization_id","3")
                         .add("photo_name", photoName)

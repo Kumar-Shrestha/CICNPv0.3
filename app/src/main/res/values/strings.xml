@@ -32,6 +32,9 @@
     <string name="url_login">http://192.168.10.76:8080/CICNP/v1/login</string>
     <string name="url_register_black_list">http://192.168.10.76:8080/CICNP/v1/registerBlackList</string>
     <string name="notification_title">CICNP Notification</string>
+    <string name="shared_preferences_key">CICNPSharedPreference</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
     <array name="search_criteria">
         <item>Name</item>

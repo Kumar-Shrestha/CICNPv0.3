@@ -2,6 +2,7 @@ package com.cicnp.rgtech.cicnpv02.WelcomeScreen;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -115,9 +118,24 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                                 {
                                     Toast.makeText(getContext(), "Login Failed. Please Retry.", Toast.LENGTH_SHORT).show();
                                 }
+                                //Organization details received
                                 else
                                 {
-                                    startActivity(new Intent("CICNP.Main"));
+                                    //Save logged in organization's information
+
+                                    try {
+                                        JSONObject messageObject = new JSONObject(message);
+
+                                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getResources().getString(R.string.shared_preferences_key), MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                        //TODO: Set values according to message JSON
+                                        editor.putString("OrganizationName", messageObject.getString("name")).apply();
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
                             }
                         });
@@ -125,6 +143,7 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                 });
                 getDataFromNetwork.getData();
 
+                startActivity(new Intent("CICNP.Main"));
 
                 break;
 
