@@ -2,7 +2,9 @@ package com.cicnp.rgtech.cicnpv02.AddBlacklist;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -241,6 +243,9 @@ public class Photo extends Fragment implements View.OnClickListener {
                 String photoName = BlackListDetails.citizenshipNo + "_profile_pic";
                 BlackListDetails.photoName = photoName;
 
+                //Shared preferences
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+
                 //Get data from network
                 String reg_url = getString(R.string.url_register_black_list);
                 RequestBody registerFormBody = new FormBody.Builder()
@@ -262,8 +267,8 @@ public class Photo extends Fragment implements View.OnClickListener {
                         .add("citizen_issued_place", BlackListDetails.citizenshipIssuedPlace)
                         //TODO: user sharedPreferences for organization name
 
-                        .add("upload_by", "MyOrg")
-                        .add("organization_id","3")
+                        .add("upload_by", sharedPreferences.getString("OrganizationFirstName", "N/A"))
+                        .add("organization_id",sharedPreferences.getString("OrganizationRegistrationNumber", "N/A"))
                         .add("photo_name", photoName)
                         .build();
                 GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());

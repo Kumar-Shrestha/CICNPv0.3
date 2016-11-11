@@ -77,7 +77,7 @@ public class WatchDetailsFragment extends Fragment {
         textView_createdOn = (TextView) view.findViewById(R.id.watchDetails_textView_createdOn);
         textView_uploadedBy = (TextView) view.findViewById(R.id.watchDetails_textView_uploadedBy);
 
-
+        imageView_photo = (ImageView) view.findViewById(R.id.watchDetails_imageView_photo);
 
 
         String reg_url = getString(R.string.url_userDetail);
@@ -102,6 +102,7 @@ public class WatchDetailsFragment extends Fragment {
                             @Override
                             public void run() {
                                 try {
+
                                     textView_name.setText(object.getString("name"));
                                     textView_fathersName.setText(object.getString("father_name"));
                                     textView_grandFathersName.setText(object.getString("grandfather_name"));
@@ -112,6 +113,12 @@ public class WatchDetailsFragment extends Fragment {
                                     textView_citizenshipNo.setText(object.getString("citizen_number"));
                                     textView_citizenshipIssuedPlace.setText(object.getString("citizen_issued_place"));
                                     textView_createdOn.setText(object.getString("created_on"));
+
+                                    Picasso.with(getContext())
+                                            .load(getString(R.string.url_localPhoto) + object.getString("photo"))
+                                            .placeholder(R.drawable.dot)
+                                            .into(imageView_photo);
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -126,10 +133,10 @@ public class WatchDetailsFragment extends Fragment {
         });
         getDataFromNetwork.getData();
 
-        imageView_photo = (ImageView) view.findViewById(R.id.watchDetails_imageView_photo);
 
-        Picasso.with(getContext()).load(getString(R.string.url_testImageUrl))
-                .into(imageView_photo);
+
+
+
 
         return view;
     }

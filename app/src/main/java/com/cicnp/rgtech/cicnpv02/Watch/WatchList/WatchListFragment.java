@@ -81,7 +81,10 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
                     for(int i=0; i<messageObject.length(); i++)
                     {
                         JSONObject object = messageObject.getJSONObject(Integer.toString(i));
-                        watchList.add(new WatchListRecyclerDataWrapper(object.getString("name"), getString(R.string.url_testImageUrl), "Father Name", "abc"));
+                        watchList.add(new WatchListRecyclerDataWrapper(object.getString("name"),
+                                getString(R.string.url_localPhoto) + object.getString("photo"),
+                                object.getString("contact_no"),
+                                "abc"));
                     }
                     
                     getActivity().runOnUiThread(new Runnable() {
