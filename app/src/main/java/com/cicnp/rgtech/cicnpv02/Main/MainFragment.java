@@ -49,8 +49,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         addMenuItem(menuGrid, R.drawable.watch, "Watch");
         addMenuItem(menuGrid, R.drawable.add, "Add\nBlacklist");
         addMenuItem(menuGrid, R.drawable.search, "Search\nBlacklist");
-        addMenuItem(menuGrid, R.drawable.add, "Watch");
-
 
         return view;
     }

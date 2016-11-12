@@ -210,18 +210,22 @@ public class SearchDetailsFragment extends Fragment implements View.OnClickListe
                             });
                         }
                         else {
+                            //Success
+                            if (!message.equals("0")) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getContext(), "Organization has been notified.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
-                            try {
-                                JSONObject messageObject = new JSONObject(message);
-
-                                if (!messageObject.getString("success").equals("0")) {
-                                    Toast.makeText(getContext(), "Organization has been notified.", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getContext(), "Failed to notify.", Toast.LENGTH_SHORT).show();
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                            } else {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getContext(), "Failed to notify.", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                             }
                         }
                     }

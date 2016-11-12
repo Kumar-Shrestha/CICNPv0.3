@@ -15,14 +15,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
+import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
 import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
+import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 import com.cicnp.rgtech.cicnpv02.WelcomeScreen.WelcomeActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -119,6 +129,40 @@ public class NavigationFragment extends Fragment implements RecyclerItemClickLis
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getResources().getString(R.string.shared_preferences_key), MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putBoolean("LoggedIn", false).apply();
+
+                //Remove token organization link
+                //Get data from network
+                String removeTokenURL = getString(R.string.url_removeToken);
+                RequestBody removeTokenFormBody = new FormBody.Builder()
+                        .add("token", FirebaseInstanceId.getInstance().getToken())
+                        .build();
+                GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(removeTokenURL, removeTokenFormBody, getActivity());
+                getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+                    @Override
+                    public void CallbackMethodForNetworkTask(String message) {
+                        if(message.equals("success"))
+                        {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "Token link removed.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else
+                        {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "Token link removal unsuccessful.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                });
+
+                getDataFromNetwork.getData();
+
 
                 startActivity(new Intent(getContext(), WelcomeActivity.class));
 
