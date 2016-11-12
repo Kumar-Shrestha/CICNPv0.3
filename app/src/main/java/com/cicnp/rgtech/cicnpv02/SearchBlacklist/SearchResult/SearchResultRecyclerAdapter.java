@@ -1,4 +1,4 @@
-package com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment;
+package com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchResult;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

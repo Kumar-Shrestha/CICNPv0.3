@@ -23,18 +23,18 @@
 
 
     <!--URL's-->
-    <string name="url_userDetail">http://192.168.100.2:8080/CICNP/v1/getUserDetail</string>
-    <string name="url_photo">http://192.168.100.2:8080/CICNP/v1/photo</string>
+    <string name="url_userDetail">http://192.168.10.76:8080/CICNP/v1/getUserDetail</string>
+    <string name="url_photo">http://192.168.10.76:8080/CICNP/v1/photo</string>
     <string name="url_testImageUrl">"https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg"</string>
-    <string name="url_register_user_token">http://192.168.100.2:8080/CICNP/v1/registerToken</string>
-    <string name="url_login">http://192.168.100.2:8080/CICNP/v1/login</string>
-    <string name="url_localPhoto">http://192.168.100.2:8080/CICNP/v1/uploads/</string>
-    <string name="url_register_black_list">http://192.168.100.2:8080/CICNP/v1/registerBlackList</string>
+    <string name="url_register_user_token">http://192.168.10.76:8080/CICNP/v1/registerToken</string>
+    <string name="url_login">http://192.168.10.76:8080/CICNP/v1/login</string>
+    <string name="url_localPhoto">http://192.168.10.76:8080/CICNP/v1/uploads/</string>
+    <string name="url_register_black_list">http://192.168.10.76:8080/CICNP/v1/registerBlackList</string>
     <string name="notification_title">CICNP Notification</string>
     <string name="shared_preferences_key">CICNPSharedPreference</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="url_inform">http://192.168.100.2:8080/CICNP/v1/sendNotification</string>
+    <string name="url_inform">http://192.168.10.76:8080/CICNP/v1/sendNotification</string>
 
     <array name="search_criteria">
         <item>Name</item>

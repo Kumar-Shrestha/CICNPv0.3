@@ -46,7 +46,7 @@ public class SearchDetailsFragment extends Fragment implements View.OnClickListe
     TextView textView_createdOn;
     TextView textView_uploadedBy;
     String blackId;
-    String organizationId;
+    String organizationIdUploadingBlacklist;
 
     Button watch;
     Button inform;
@@ -89,8 +89,8 @@ public class SearchDetailsFragment extends Fragment implements View.OnClickListe
 
         String reg_url = getString(R.string.url_userDetail);
         RequestBody registerFormBody = new FormBody.Builder()
-                .add("criteria", SearchBlackListFragment.searchCriteria)
-                .add("value", SearchBlackListFragment.searchContent)
+                .add("criteria", "citizen")
+                .add("value", uniqueVariable)
                 .build();
 
         GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
@@ -122,7 +122,7 @@ public class SearchDetailsFragment extends Fragment implements View.OnClickListe
                                     textView_createdOn.setText(object.getString("created_on"));
 
                                     blackId = object.getString("black_id");
-                                    organizationId = object.getString("organization_id");
+                                    organizationIdUploadingBlacklist = object.getString("organization_id");
 
                                     Picasso.with(getContext())
                                             .load(getString(R.string.url_localPhoto) + object.getString("photo"))
@@ -164,20 +164,24 @@ public class SearchDetailsFragment extends Fragment implements View.OnClickListe
         {
             case R.id.searchDetails_button_watch:
 
+                SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
+                boolean watchInstanceFound = false;
                 for(int i=1; i<=sharedPreferences.getInt("totalWatch", 0); i++)
                 {
-                    if(!sharedPreferences.getString("watchCitizenshipNo"+Integer.toString(i), "N/A").equals(textView_citizenshipNo.getText().toString()))
+                    if(sharedPreferences.getString("watchCitizenshipNo"+Integer.toString(i), "N/A").equals(textView_citizenshipNo.getText().toString()))
                     {
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt("totalWatch", sharedPreferences.getInt("totalWatch",0)+1 ).apply();
-                        editor.putString("watchCitizenshipNo"+sharedPreferences.getInt("totalWatch", 0), textView_citizenshipNo.getText().toString() ).apply();
-                    }
-                    else
-                    {
+                        watchInstanceFound = true;
                         Toast.makeText(getContext(), "Already added to Watch", Toast.LENGTH_SHORT).show();
+                        break;
                     }
+                }
+                if(!watchInstanceFound)
+                {
+                    editor.putInt("totalWatch", sharedPreferences.getInt("totalWatch",0)+1 ).apply();
+                    editor.putString("watchCitizenshipNo"+sharedPreferences.getInt("totalWatch", 0), textView_citizenshipNo.getText().toString() ).apply();
+                    Toast.makeText(getContext(), "Added to Watch", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -189,26 +193,36 @@ public class SearchDetailsFragment extends Fragment implements View.OnClickListe
                 String inform_url = getString(R.string.url_inform);
                 RequestBody informFormBody = new FormBody.Builder()
                         .add("message",textView_name.getText().toString()+" has contacted " + sharedPreferences.getString("OrganizationFirstName","N/A"))
-                        .add("org_id", organizationId)
+                        .add("org_id", organizationIdUploadingBlacklist)
                         .build();
                 GetDataFromNetwork getInformDataFromNetwork = new GetDataFromNetwork(inform_url, informFormBody, getActivity());
                 getInformDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
                     @Override
                     public void CallbackMethodForNetworkTask(String message) {
-                        try {
-                            JSONObject messageObject = new JSONObject(message);
 
-                            if(!messageObject.getString("success").equals("0"))
-                            {
-                                Toast.makeText(getContext(), "Organization has been notified.", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(getContext(), "failed to notify.", Toast.LENGTH_SHORT).show();
-                            }
+                        if(message.equals("failure"))
+                        {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getContext(), "Failed to notify", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                        else {
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                            try {
+                                JSONObject messageObject = new JSONObject(message);
+
+                                if (!messageObject.getString("success").equals("0")) {
+                                    Toast.makeText(getContext(), "Organization has been notified.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Failed to notify.", Toast.LENGTH_SHORT).show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 });

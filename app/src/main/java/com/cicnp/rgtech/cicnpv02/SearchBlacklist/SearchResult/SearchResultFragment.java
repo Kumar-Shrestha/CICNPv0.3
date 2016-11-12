@@ -17,9 +17,6 @@ import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
 import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchDetails.SearchDetailsFragment;
 import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchBlackListFragment;
-import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchResultRecyclerAdapter;
-import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchFragment.SearchResultRecyclerDataWrapper;
-import com.cicnp.rgtech.cicnpv02.Watch.WatchDetails.WatchDetailsFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -82,8 +79,11 @@ public class SearchResultFragment extends Fragment implements RecyclerItemClickL
                                 for(int i=0; i<messageObject.length(); i++)
                                 {
                                     JSONObject object = messageObject.getJSONObject(Integer.toString(i));
-                                    searchList.add(new SearchResultRecyclerDataWrapper(object.getString("name"),
-                                            getString(R.string.url_localPhoto)+ object.getString("photo")));
+                                    searchList.add(new SearchResultRecyclerDataWrapper(
+                                            object.getString("name"),
+                                            getString(R.string.url_localPhoto)+ object.getString("photo"),
+                                            object.getString("citizen_number")
+                                    ));
                                 }
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
@@ -134,7 +134,7 @@ public class SearchResultFragment extends Fragment implements RecyclerItemClickL
     public void onItemClick(View view, int position) {
         SearchDetailsFragment searchDetailsFragment = new SearchDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("UniqueVariable", searchList.get(position).name);
+        bundle.putString("UniqueVariable", searchList.get(position).citizenshipNumber);
         searchDetailsFragment.setArguments(bundle);
         android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.searchBlackList_container, searchDetailsFragment);
