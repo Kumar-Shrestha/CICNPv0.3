@@ -133,9 +133,11 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
 
     @Override
     public void onItemClick(View view, int position) {
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+
         WatchDetailsFragment watchDetailsFragment = new WatchDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("UniqueVariable", watchList.get(position).uniqueVariable);
+        bundle.putString("UniqueVariable", sharedPreferences.getString("watchCitizenshipNo"+Integer.toString(position+1), "N/A"));
         watchDetailsFragment.setArguments(bundle);
         android.support.v4.app.FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.watch_container, watchDetailsFragment);
