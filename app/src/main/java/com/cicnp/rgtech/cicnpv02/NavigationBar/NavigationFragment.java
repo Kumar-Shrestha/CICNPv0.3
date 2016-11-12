@@ -15,10 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cicnp.rgtech.cicnpv02.AddBlacklist.AddBlacklistActivity;
 import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
 import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
+import com.cicnp.rgtech.cicnpv02.OrganizationProfile.OrganizationProfile;
 import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
+import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchBlackListActivity;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 import com.cicnp.rgtech.cicnpv02.WelcomeScreen.WelcomeActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -113,6 +116,22 @@ public class NavigationFragment extends Fragment implements RecyclerItemClickLis
 
     @Override
     public void onItemClick(View view, int position) {
+
+        switch(position)
+        {
+            case 0:
+                startActivity( new Intent(getContext(), OrganizationProfile.class));
+                break;
+
+            case 1:
+                startActivity(new Intent(getContext(), AddBlacklistActivity.class));
+                break;
+
+            case 2:
+                startActivity(new Intent(getContext(), SearchBlackListActivity.class));
+                break;
+        }
+
     }
 
     @Override

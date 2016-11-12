@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_organization_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cicnp.rgtech.cicnpv02.OrganizationProfile.OrganizationProfile"
+    android:background="@color/colorPrimaryDark">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Organization Name"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_name"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_address"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Contact No."
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact Number"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_contactNo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Organization ID"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Organization ID"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_organizationID"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Registration Date"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registration Date"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_registrationDate"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Registration Number"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Registration Number"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_registrationNumber"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Active"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Active"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_active"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="User Type"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User type"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_userType"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="@dimen/watchdetails_colWidth"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry Date"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimaryLight"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry Date"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:id="@+id/profile_textView_expiryDate"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>
