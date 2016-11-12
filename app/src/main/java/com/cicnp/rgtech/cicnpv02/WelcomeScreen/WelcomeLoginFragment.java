@@ -70,34 +70,8 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
         {
             case R.id.welcome_button_login:
 
-                //Register token
-                String reg_url = getString(R.string.url_register_user_token);
-                RequestBody registerTokenBody = new FormBody.Builder()
-                        .add("token", FirebaseInstanceId.getInstance().getToken())
-                        .add("org_id","2")
-                        .build();
 
-                GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerTokenBody, getActivity());
-                getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
-                    @Override
-                    public void CallbackMethodForNetworkTask(final String message) {
 
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(message.toString().equals("success"))
-                                {
-                                    Toast.makeText(getContext(), "Token success", Toast.LENGTH_SHORT).show();
-                                }
-                                else
-                                {
-                                    Toast.makeText(getContext(), "Token already registered", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                });
-                getDataFromNetwork.getData();
 
 
                 //Login
@@ -144,10 +118,40 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                                         editor.putString("OrganizationPhoto", messageObject.getString("photo")).apply();
                                         editor.putString("OrganizationRegistrationDate", messageObject.getString("reg_date")).apply();
                                         editor.putString("OrganizationRegistrationNumber", messageObject.getString("reg_no")).apply();
+                                        editor.putString("OrganizationID", messageObject.getString("org_id")).apply();
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+
+                                    //Register token
+                                    String reg_url = getString(R.string.url_register_user_token);
+                                    RequestBody registerTokenBody = new FormBody.Builder()
+                                            .add("token", FirebaseInstanceId.getInstance().getToken())
+                                            .add("org_id", getActivity().getSharedPreferences(getString(R.string.shared_preferences_key), MODE_PRIVATE).getString("OrganizationID", "N/A"))
+                                            .build();
+
+                                    GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerTokenBody, getActivity());
+                                    getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+                                        @Override
+                                        public void CallbackMethodForNetworkTask(final String message) {
+
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if(message.toString().equals("success"))
+                                                    {
+                                                        Toast.makeText(getContext(), "Token success", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                    else
+                                                    {
+                                                        Toast.makeText(getContext(), "Token already registered", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                    getDataFromNetwork.getData();
 
                                     startActivity(new Intent(getContext(), MainActivity.class));
 

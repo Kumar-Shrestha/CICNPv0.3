@@ -1,6 +1,8 @@
 package com.cicnp.rgtech.cicnpv02.Watch.WatchList;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cicnp.rgtech.cicnpv02.OKHttp.GetDataFromNetwork;
 import com.cicnp.rgtech.cicnpv02.OKHttp.NetworkTaskInterface;
@@ -46,42 +49,59 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Get data from network
-        String reg_url = getString(R.string.url_userDetail);
-        RequestBody registerFormBody = new FormBody.Builder()
-                .add("criteria","name")
-                .add("value", "abc")
-                .build();
-        GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
-        getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
-            @Override
-            public void CallbackMethodForNetworkTask(String message) {
-                try {
-                    JSONObject messageObject = new JSONObject(message);
+        //Get shared preferences data from shared preferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(getString(R.string.shared_preferences_key), Context.MODE_PRIVATE);
+        final List<String> watchCitizenshipNoList = new ArrayList<>();
 
-                    for(int i=0; i<messageObject.length(); i++)
-                    {
-                        JSONObject object = messageObject.getJSONObject(Integer.toString(i));
-                        watchList.add(new WatchListRecyclerDataWrapper(object.getString("name"),
-                                getString(R.string.url_localPhoto) + object.getString("photo"),
-                                object.getString("contact_no"),
-                                "abc"));
-                    }
+        if(sharedPreferences.getInt("totalWatch", 0) == 0)
+        {
+            Toast.makeText(getContext(), "No Watch", Toast.LENGTH_SHORT).show();
+        }
 
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            adapter.notifyDataSetChanged();
+        for(int i=0; i<sharedPreferences.getInt("totalWatch", 0); i++)
+        {
+            watchCitizenshipNoList.add(sharedPreferences.getString("watchCitizenshipNo"+Integer.toString(i+1), "N/A"));
+
+
+            //Get data from network
+            String reg_url = getString(R.string.url_userDetail);
+            RequestBody registerFormBody = new FormBody.Builder()
+                    .add("criteria","citizen")
+                    .add("value", watchCitizenshipNoList.get(i))
+                    .build();
+            GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
+            getDataFromNetwork.setSucessOrFailListener(new NetworkTaskInterface() {
+                @Override
+                public void CallbackMethodForNetworkTask(String message) {
+                    try {
+                        JSONObject messageObject = new JSONObject(message);
+
+                        for(int i=0; i<messageObject.length(); i++)
+                        {
+                            JSONObject object = messageObject.getJSONObject(Integer.toString(i));
+                            watchList.add(new WatchListRecyclerDataWrapper(object.getString("name"),
+                                    getString(R.string.url_localPhoto) + object.getString("photo"),
+                                    object.getString("contact_no"),
+                                    watchCitizenshipNoList.get(i)));
                         }
-                    });
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
+            });
 
-        getDataFromNetwork.getData();
+            getDataFromNetwork.getData();
+        }
+
+
     }
 
     @Override
@@ -103,13 +123,6 @@ public class WatchListFragment extends Fragment implements RecyclerItemClickList
         recyclerView.setLayoutManager(mLayoutManager);
 
         recyclerView.setAdapter(adapter);
-
-
-
-
-
-
-
 
         //Recycler view click listener
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), recyclerView, this));

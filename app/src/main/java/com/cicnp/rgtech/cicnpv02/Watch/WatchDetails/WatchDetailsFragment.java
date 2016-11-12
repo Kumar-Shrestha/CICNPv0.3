@@ -82,7 +82,7 @@ public class WatchDetailsFragment extends Fragment {
 
         String reg_url = getString(R.string.url_userDetail);
         RequestBody registerFormBody = new FormBody.Builder()
-                .add("criteria", "name")
+                .add("criteria", "citizen")
                 .add("value", uniqueVariable)
                 .build();
 

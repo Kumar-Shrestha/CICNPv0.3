@@ -268,7 +268,7 @@ public class Photo extends Fragment implements View.OnClickListener {
                         //TODO: user sharedPreferences for organization name
 
                         .add("upload_by", sharedPreferences.getString("OrganizationFirstName", "N/A"))
-                        .add("organization_id",sharedPreferences.getString("OrganizationRegistrationNumber", "N/A"))
+                        .add("organization_id",sharedPreferences.getString("OrganizationID", "N/A"))
                         .add("photo_name", photoName)
                         .build();
                 GetDataFromNetwork getDataFromNetwork = new GetDataFromNetwork(reg_url, registerFormBody, getActivity());
