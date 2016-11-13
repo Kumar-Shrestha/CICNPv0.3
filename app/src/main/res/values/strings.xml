@@ -9,12 +9,14 @@
         <item>Organization Profile</item>
         <item>Add Black List</item>
         <item>Search Black List</item>
+        <item>Watch Black List</item>
     </array>
 
     <array name="nav_recyclerView_images">
-        <item>dot</item>
-        <item>dot</item>
-        <item>dot</item>
+        <item>nav_profile</item>
+        <item>nav_add</item>
+        <item>nav_search</item>
+        <item>nav_watch</item>
     </array>
 
     <!-- Network Messages-->

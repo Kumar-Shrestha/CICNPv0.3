@@ -22,6 +22,7 @@ import com.cicnp.rgtech.cicnpv02.OrganizationProfile.OrganizationProfile;
 import com.cicnp.rgtech.cicnpv02.R;
 import com.cicnp.rgtech.cicnpv02.RecyclerView.RecyclerItemClickListener;
 import com.cicnp.rgtech.cicnpv02.SearchBlacklist.SearchBlackListActivity;
+import com.cicnp.rgtech.cicnpv02.Watch.WatchActivity;
 import com.cicnp.rgtech.cicnpv02.Watch.WatchList.WatchListRecyclerDataWrapper;
 import com.cicnp.rgtech.cicnpv02.WelcomeScreen.WelcomeActivity;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -129,6 +130,10 @@ public class NavigationFragment extends Fragment implements RecyclerItemClickLis
 
             case 2:
                 startActivity(new Intent(getContext(), SearchBlackListActivity.class));
+                break;
+
+            case 3:
+                startActivity(new Intent(getContext(), WatchActivity.class));
                 break;
         }
 

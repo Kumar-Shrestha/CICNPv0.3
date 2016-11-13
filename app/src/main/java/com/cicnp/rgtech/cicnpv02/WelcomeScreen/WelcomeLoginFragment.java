@@ -153,7 +153,7 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                                     });
                                     getDataFromNetwork.getData();
 
-                                    startActivity(new Intent(getContext(), MainActivity.class));
+                                    //TODO: Login to put here
 
                                 }
                             }
@@ -162,7 +162,7 @@ public class WelcomeLoginFragment extends Fragment implements View.OnClickListen
                 });
                 getLoginRequestFromNetwork.getData();
 
-
+                startActivity(new Intent(getContext(), MainActivity.class));
 
                 break;
 

@@ -74,7 +74,7 @@ public class GetDataFromNetwork{
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(activity, "Client side error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, "Network Problem", Toast.LENGTH_SHORT).show();
                         }
                     });
 
