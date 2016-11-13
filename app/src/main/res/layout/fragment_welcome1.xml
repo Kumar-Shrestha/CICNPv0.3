@@ -4,13 +4,51 @@
     android:layout_height="match_parent"
     tools:context="com.cicnp.rgtech.cicnpv02.WelcomeScreen.Welcome1Fragment">
 
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WELCOME ONE"
-        android:layout_gravity="center"
-        android:textSize="40sp"
-        android:textColor="@color/white"/>
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginBottom="50dp"
+            android:textColor="@color/colorPrimary"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CICNP"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="#EEEEEE"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Credit Information Center Nepal"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimaryLight"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Revolutionizing Cooperative System"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginTop="70dp"/>
+
+    </LinearLayout>
 
 </FrameLayout>

@@ -10,6 +10,9 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
 
+    <color name="colorAccentLight">#FFCCCC</color>
+    <color name="colorGreenLight">#CCFFCC</color>
+
     <color name="white">#FFFFFF</color>
 
 </resources>
